@@ -48,7 +48,7 @@ backgrounds: [
 ]
 })('overlay', {
 /** SLIDESHOW OVERLAY IMAGE **/
-src: '../static/js/vegas/overlays/06.png' // THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
+src: '../static/js/vegas/overlays/06.png' // (06, THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
 });
 
 
