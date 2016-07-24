@@ -11,7 +11,7 @@ app.config.from_object(__name__)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'flaskr.db'),
+    DATABASE=os.path.join(app.root_path, 'guild.db'),
     SECRET_KEY='development key',
     USERNAME='admin',
     PASSWORD='default'
@@ -84,6 +84,6 @@ def logout():
     return redirect(url_for('show_entries'))
 
 if __name__ == "__main__":
-    if not os.path.isfile("flaskr.db"):
+    if not os.path.isfile("guild.db"):
         init_db()
     app.run()
