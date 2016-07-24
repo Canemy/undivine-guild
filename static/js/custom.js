@@ -43,12 +43,12 @@ VAGAS SLIDESHOW SCRIPTS
 ======================================*/
 $.vegas('slideshow', {
 backgrounds: [
-{ src: "{{ url_for('static', filename='img/1.jpg') }}", fade: 1000, delay: 9000 },
-{ src: "{{ url_for('static', filename='img/1.jpg') }}", fade: 1000, delay: 9000 },
+{ src: '../static/img/1.jpg', fade: 1000, delay: 9000 },
+{ src: '../static/img/2.jpg', fade: 1000, delay: 9000 },
 ]
 })('overlay', {
 /** SLIDESHOW OVERLAY IMAGE **/
-src: "{{ url_for('static', filename='js/vegas/overlays/06.png') }}" // THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
+src: '../static/js/vegas/overlays/06.png' // THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
 });
 
 
