@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Heroes';
+  src: url('../fonts/heroes.eot');
+  src: url('../fonts/heroes.eot') format('embedded-opentype'), url('../fonts/heroes.woff') format('woff'), url('../fonts/heroes.ttf') format('truetype'), url('../fonts/heroes.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.wow {
+  display: inline-block;
+  font: normal normal normal 14px/1 Heroes;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  font-size: 2em;
+}
+.wow-wow:before {
+  content: "\e600";
+}
+.wow-bnet:before {
+  content: "\e607";
+}
