@@ -6,15 +6,17 @@
         <div class="row animate-in" data-anim-type="fade-in-up">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h2>Application</h2>
-                <div class="form-group">
-                    <label for="inputlg">input-lg</label>
-                    <input class="form-control input-lg" id="inputlg" placeholder="text">
-                </div>
                 {% for question in questions %}
                 {% if question.type == "input" %}
                 <div class="form-group">
-                    <label for="inputlg">{{ question.text }}</label>
-                    <input class="form-control input-lg"  id="{{ question.key }}" placeholder="{{ question.placeholder }}">
+                    <label for="{{ question.key }}">{{ question.text }}</label>
+                    <input class="form-control" id="{{ question.key }}" placeholder="{{ question.placeholder }}">
+                </div>
+                {% endif %}
+                {% if question.type == "textarea" %}
+                <div class="form-group">
+                    <label for="{{ question.key }}">{{ question.text }}</label>
+                    <textarea class="form-control" rows="5" id="{{ question.key }}" placeholder="{{ question.placeholder }}"></textarea>
                 </div>
                 {% endif %}
                 {% endfor %}

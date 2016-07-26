@@ -15,7 +15,7 @@
   },
   {
     "key": "previous_experience",
-    "text": "How long have you been playing WoW?",
+    "text": "How long have you been raiding?",
     "type": "textarea",
     "placeholder": "How long have you been raiding overall and what's your best raiding achievement",
     "required": "true"
