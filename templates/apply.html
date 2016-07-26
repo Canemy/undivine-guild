@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--GRID SECTION START-->
+<section id="grid">
+    <div class="container">
+        <div class="row animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>Application</h2>
+                <div class="form-group">
+                    <label for="inputlg">input-lg</label>
+                    <input class="form-control input-lg" id="inputlg" placeholder="text">
+                </div>
+                {% for question in questions %}
+                {% if question.type == "input" %}
+                <div class="form-group">
+                    <label for="inputlg">{{ question.text }}</label>
+                    <input class="form-control input-lg"  id="{{ question.key }}" placeholder="{{ question.placeholder }}">
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--GRID SECTION END-->
+{% endblock %}

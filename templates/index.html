@@ -1,0 +1,389 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--HOME SECTION START-->
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+                <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in"
+                     data-anim-type="fade-in-up">
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+
+                            <h3>
+                                Now recruiting for Legion
+                            </h3>
+                            <p>
+                                We are a semi-hardcore raiding guild that raids 3 nights a week and also maintains a casual raid team, totalling 5 raids a week.
+                                We have a strong core from Draenor and are looking to build on that.
+                            </p>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row animate-in" data-anim-type="fade-in-up">
+            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
+
+
+                <p>
+
+                </p>
+                <div class="social">
+                    <a href="#" class="btn button-custom btn-custom-one"><i class="fa fa-facebook "></i></a>
+                    <a href="#" class="btn button-custom btn-custom-one"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="btn button-custom btn-custom-one"><i class="fa fa-twitch "></i></a>
+                    <a href="#" class="btn button-custom btn-custom-one"><i class="fa fa-youtube-play "></i></a>
+                </div>
+                <a href="#services" class=" btn button-custom btn-custom-two">APPLY HERE</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--HOME SECTION END-->
+<!--GRID SECTION START-->
+<!--GRID SECTION START-->
+<section id="grid">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <h3>About us</h3>
+                <hr/>
+
+            </div>
+        </div>
+        <div class="row pad-bottom animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <h2>Discord</h2>
+                <p>
+                    <iframe src="https://discordapp.com/widget?id=146213216882524160&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+                </p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <h2>Progression</h2>
+                <h3>Hellfire Citadel</h3>
+                <h4>Normal</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="13" style="width:100%">
+                        <span>13/13</span>
+                    </div>
+                </div>
+                <h4>Heroic</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="13" style="width:100%">
+                        <span>13/13</span>
+                    </div>
+                </div>
+                <h4>Mythic</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="13" style="width:{{ (11/13)*100 }}%">
+                        <span>11/13</span>
+                    </div>
+                </div>
+                <a href="http://www.wowprogress.com/guild/eu/frostwhisper/Imperfection"><img alt="WoW Guild Rankings" src="http://wowprogress.com/guild_img/1059408/out/type.site" border="0"/></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--GRID SECTION END-->
+<!--KILLS SECTION START-->
+<section id="work">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Gallery</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row text-center animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
+                <div class="caegories">
+                    <a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm">All</a>
+                    <a href="#" data-filter=".wod" class="btn btn-custom btn-custom-two btn-sm">Draenor</a>
+                    <a href="#" data-filter=".ten" class="btn btn-custom btn-custom-two btn-sm">The Emerald
+                        Nightmare </a>
+                    <a href="#" data-filter=".gps" class="btn btn-custom btn-custom-two btn-sm">The Grand Palace of
+                        Suramar</a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center animate-in" data-anim-type="fade-in-up" id="work-div">
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 wod">
+                <div class="work-wrapper">
+
+                    <a class="fancybox-media" title="Image Title Goes Here"
+                       href="{{ url_for('static', filename='img/portfolio/archi.jpg') }}">
+
+                        <img src="{{ url_for('static', filename='img/portfolio/archi.jpg')}}"
+                             class="img-responsive img-rounded" alt=""/>
+                    </a>
+
+                    <h4>Heroic Archimonde</h4>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 wod">
+                <div class="work-wrapper">
+
+                    <a class="fancybox-media" title="Image Title Goes Here"
+                       href="{{ url_for('static', filename='img/portfolio/tyrant.jpg') }}">
+
+                        <img src="{{ url_for('static', filename='img/portfolio/tyrant.jpg') }}"
+                             class="img-responsive img-rounded" alt=""/>
+                    </a>
+
+                    <h4>Mythic Tyrant Velhari</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--KILLS SECTION END-->
+<!--TEAM SECTION START-->
+<section id="team">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Team Members</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row animate-in" data-anim-type="fade-in-up">
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="team-wrapper">
+                    <div class="team-inner" style="background-image: url('../static/img/team/1.jpg')">
+                        <a href="#" target="_blank"> <i class="wow wow-wow"></i></a>
+                    </div>
+                    <div class="description">
+                        <h3>Bertagreta</h3>
+                        <h5><strong>Guild Master</strong></h5>
+                        <p>
+                            Leader of the guild. The good cop and also the bad cop.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="team-wrapper">
+                    <div class="team-inner" style="background-image: url('../static/img/team/2.jpg')">
+                        <a href="#" target="_blank"> <i class="wow wow-wow"></i></a>
+                    </div>
+                    <div class="description">
+                        <h3>Canemy</h3>
+                        <h5><strong>Co-GM</strong></h5>
+                        <p>
+                            In charge of the raid team and raid leader
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="team-wrapper">
+                    <div class="team-inner" style="background-image: url('../static/img/team/3.jpg')">
+                        <a href="#" target="_blank"> <i class="wow wow-wow"></i></a>
+                    </div>
+                    <div class="description">
+                        <h3>Mutai</h3>
+                        <h5><strong>Co-GM</strong></h5>
+                        <p>
+                            In charge of beverages.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="team-wrapper">
+                    <div class="team-inner" style="background-image: url('../static/img/team/4.jpg')">
+                        <a href="#" target="_blank"> <i class="wow wow-wow"></i></a>
+                    </div>
+                    <div class="description">
+                        <h3>Argentt</h3>
+                        <h5><strong>Officer</strong></h5>
+                        <p>
+                            Co-raid leader
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row animate-in" data-anim-type="fade-in-up">
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="team-wrapper">
+                    <div class="team-inner" style="background-image: url('../static/img/team/1.jpg')">
+                        <a href="#" target="_blank"> <i class="wow wow-wow"></i></a>
+                    </div>
+                    <div class="description">
+                        <h3>Khrok</h3>
+                        <h5><strong> Officer </strong></h5>
+                        <p>
+                            Master of logs
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--TEAM SECTION END-->
+<!--SERVICE SECTION START-->
+<section id="services">
+    <div class="container">
+        <div class="row text-center header">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animate-in" data-anim-type="fade-in-up">
+                <h3>Our values</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-clock"></i>
+                    <h3>Punctuality</h3>
+                    Raids start 20:00 realm time. Invites 15 minutes before that. Raiders should be online when the
+                    first invite wave goes out.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-checkmark-round"></i>
+                    <h3>Attendance</h3>
+                    Most of our core raiders maintained a 90%+ attendance rate over the course of the entire year.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-clipboard"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-calendar"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-erlenmeyer-flask"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-monitor"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-pinpoint"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-tshirt-outline"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="services-wrapper">
+                    <i class="ion-speedometer"></i>
+                    <h3>Consectetur tellus nec</h3>
+                    Morbi mollis lectus et ipsum sollicitudin varius.
+                    Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                </div>
+            </div>
+            <a href="#services" class=" btn button-custom btn-custom-two">APPLY HERE</a>
+        </div>
+    </div>
+</section>
+<!--SERVICE SECTION END-->
+
+<!--CONTACT SECTION START-->
+<section id="contact">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <h3>Contact Details </h3>
+                <hr/>
+
+            </div>
+        </div>
+
+        <div class="row animate-in" data-anim-type="fade-in-up">
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="contact-wrapper">
+                    <h3>We Are Social</h3>
+                    <p>
+                        Aliquam tempus ante placerat,
+                        consectetur tellus nec, porttitor nulla.
+                    </p>
+                    <div class="social-below">
+                        <a href="#" class="btn button-custom btn-custom-two"> Facebook</a>
+                        <a href="#" class="btn button-custom btn-custom-two"> Twitter</a>
+                        <a href="#" class="btn button-custom btn-custom-two"> Google +</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="contact-wrapper">
+                    <h3>Quick Contact</h3>
+                    <h4><strong>Email : </strong> info@yuordomain.com </h4>
+                    <h4><strong>Call : </strong> +09-88-99-77-55 </h4>
+                    <h4><strong>Skype : </strong> Yujhaeu78 </h4>
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="contact-wrapper">
+                    <h3>Address : </h3>
+                    <h4>230/45 , New way Lane , </h4>
+                    <h4>United States</h4>
+                    <div class="footer-div">
+                        &copy; 2015 YourDomain | <a href="http://www.designbootstrap.com/" target="_blank">by
+                        DesignBootstrp</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+{% endblock %}
