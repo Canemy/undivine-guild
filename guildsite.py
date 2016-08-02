@@ -59,9 +59,7 @@ def apply():
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
-    with open("templates/app_form.json", 'r') as f:
-        questions = json.load(f)
-    return render_template('apply.html', entries=entries, questions=questions)
+    return render_template('apply.html', entries=entries)
 
 
 @app.route('/add', methods=['POST'])

@@ -7,31 +7,17 @@
     "required": "true"
   },
   {
-    "key": "expansions_played",
-    "text": "How long have you been playing WoW?",
-    "type": "textarea",
-    "placeholder": "What expansions have you played. Have you taken any breaks",
-    "required": "true"
-  },
-  {
     "key": "previous_experience",
     "text": "How long have you been raiding?",
     "type": "textarea",
-    "placeholder": "How long have you been raiding overall and what's your best raiding achievement",
+    "placeholder": "How long have you been raiding in WoW and what's your best raiding achievement",
     "required": "true"
   },
   {
     "key": "classes_played",
-    "text": "What classes/roles are you most familiar with?",
+    "text": "What classes/roles are you looking to play in Legion?",
     "type": "textarea",
-    "placeholder": "What are you good at this expansion and what did you used to be good at",
-    "required": "true"
-  },
-  {
-    "key": "addons",
-    "text": "What addons do you use?",
-    "type": "textarea",
-    "placeholder": "Addons that are useful in a raiding environment. Don't list Auctioneer or NPCScan here",
+    "placeholder": "What class looks tempting to you now and what other classes are you good at",
     "required": "true"
   },
   {
@@ -42,13 +28,6 @@
     "required": "true"
   },
   {
-    "key": "log_links",
-    "text": "Post links to your logs if you have any.",
-    "type": "textarea",
-    "placeholder": "Paste a link to any of your logs that you feel most proud of so we can analyze them. We're most familiar with WarcraftLogs.com but other sites will do",
-    "required": "true"
-  },
-  {
     "key": "UI_links",
     "text": "Post a picture of your UI.",
     "type": "textarea",
@@ -56,15 +35,8 @@
     "required": "false"
   },
   {
-    "key": "microphone",
-    "text": "Do you have a working microphone and are not too shy to use it?",
-    "type": "radio",
-    "placeholder": null,
-    "required": "true"
-  },
-  {
     "key": "microphone_explanation",
-    "text": "If no, why?",
+    "text": "Do you have a working microphone and are you going willing to use it?",
     "type": "textarea",
     "placeholder": "Communication is vital. We don't expect you to give speeches, but sometimes you have to be able to call something out",
     "required": "false"
@@ -77,13 +49,6 @@
     "required": "true"
   },
   {
-    "key": "computer_info",
-    "text": "What kind of computer are you playing on?",
-    "type": "textarea",
-    "placeholder": "Is it a beat-up old laptop or a custom built gaming rig? Tell us the specs. Raiding with 15 fps is not an ideal scenario",
-    "required": "true"
-  },
-  {
     "key": "internet_info",
     "text": "How reliable is your internet?",
     "type": "textarea",
@@ -91,31 +56,10 @@
     "required": "true"
   },
   {
-    "key": "referer",
-    "text": "How did you find us?",
-    "type": "textarea",
-    "placeholder": "Did someone refer you or did you see any of our recruitment posts?",
-    "required": "true"
-  },
-  {
     "key": "personal_intro",
     "text": "Tell us a bit more about yourself.",
     "type": "textarea",
-    "placeholder": "You already disclosed your age and nationality on your profile but there's more to a person than that. Give us a quick overview of the kind of person you are",
+    "placeholder": "Where are you from? Give us a quick overview of the kind of person you are",
     "required": "true"
-  },
-  {
-    "key": "additional_info",
-    "text": "Is there anything else you would like us to know about you?",
-    "type": "textarea",
-    "placeholder": "Anything that will make you stand out?",
-    "required": "false"
-  },
-  {
-    "key": "joke",
-    "text": "Tell us a joke.",
-    "type": "textarea",
-    "placeholder": "The more offensive, the better",
-    "required": "false"
   }
 ]
