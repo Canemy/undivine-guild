@@ -65,8 +65,8 @@ easing: 'linear',
 queue: false
 }
 });
-$('.caegories a').click(function () {
-$('.caegories .active').removeClass('active');
+$('.categories a').click(function () {
+$('.categories .active').removeClass('active');
 $(this).addClass('active');
 var selector = $(this).attr('data-filter');
 $container.isotope({

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<section id="apps">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Applications</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row text-center animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
+                <div class="categories">
+                    <a href="#" data-filter=".0" class="active btn btn-custom btn-custom-two btn-sm">NEW</a>
+                    <a href="#" data-filter="*" class="btn btn-custom btn-custom-two btn-sm">ALL</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="animate-in" data-anim-type="fade-in-up" id="accordion" role="tablist" aria-multiselectable="true">
+            {% for app in apps %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{ app.id }}">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ app.id }}" aria-expanded="false" aria-controls="collapse{{ app.id }}">
+                            {{ app.battletag }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{ app.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ app.id }}">
+                    <li><b>Experience:</b> {{ app.experience }}
+                    <li><b>Class:</b> {{ app.class }}
+                    <li><b>Improve:</b> {{ app.improve }}
+                    <li><b>Attendance:</b> {{ app.attendance }}
+                    <li><b>Rig:</b> {{ app.rig }}
+                    <li><b>Rig:</b> {{ app.personal }}
+                    <li><b>Datetime:</b> {{ app.datetime }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

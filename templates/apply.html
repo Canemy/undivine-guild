@@ -1,47 +1,56 @@
 {% extends "layout.html" %}
 {% block body %}
-<!--GRID SECTION START-->
-<section id="grid">
+<section id="form">
     <div class="container">
-
-
         <div class="row text-center header animate-in" data-anim-type="fade-in-up">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h3>Application</h3>
                 <hr>
             </div>
         </div>
-
-
-        <div class="row animate-in" data-anim-type="fade-in-up">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label>BattleTag</label>
-                    <input class="form-control" id="battletag" placeholder="BattleTag#1234">
-                </div>
-                <div class="form-group">
-                    <label>What is your previous experience in WoW and raiding?</label>
-                    <textarea class="form-control" rows="5" id="experience" placeholder="How long have you been raiding in WoW and what's your best raiding achievement."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What classes/roles are you most familiar with and what are you looking forward to playing in Legion?</label>
-                    <textarea class="form-control" rows="5" id="class" placeholder="Also list how many and what alts you plan on having."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What resources do you use to analyze and improve yourself?</label>
-                    <textarea class="form-control" rows="5" id="improve" placeholder="Where do you find the latest information about your class? How do you get your stat priorities? Do you use SimCraft? Logs? Do you set up proper weakauras/other addons to get the most out of your character?"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What kind of attendance can we expect from you?</label>
-                    <textarea class="form-control" rows="5" id="attendance" placeholder="100% attendance is great, but real life comes in the way sometimes. Do you work weird hours or play tennis with your friends every 2nd Sunday evening of the month? Let us know."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What is your gaming setup? How good are the specs on your PC and how reliable is your internet?</label>
-                    <textarea class="form-control" rows="5" id="rig" placeholder="Having 500ms or getting disconnected in the middle of the raid is not good. Could this happen to you?"></textarea>
+        <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+            <div class="row animate-in" data-anim-type="fade-in-up">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label>BattleTag</label>
+                        <input class="form-control" name="battletag" required placeholder="BattleTag#1234">
+                    </div>
+                    <div class="form-group">
+                        <label>What is your previous experience in WoW and raiding?</label>
+                        <textarea class="form-control" rows="5" name="experience" required placeholder="How long have you been raiding in WoW and what's your best raiding achievement."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What classes/roles are you most familiar with and what are you looking forward to playing in Legion?</label>
+                        <textarea class="form-control" rows="5" name="class" required placeholder="Also list how many and what alts you plan on having."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What resources do you use to analyze and improve yourself?</label>
+                        <textarea class="form-control" rows="5" name="improve" required
+                                  placeholder="Where do you find the latest information about your class? How do you get your stat priorities? Do you use SimCraft? Logs? Do you set up proper weakauras/other addons to get the most out of your character?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What kind of attendance can we expect from you?</label>
+                        <textarea class="form-control" rows="5" name="attendance" required
+                                  placeholder="100% attendance is great, but real life comes in the way sometimes. Do you work weird hours or play tennis with your friends every 2nd Sunday evening of the month? Let us know."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What is your gaming setup? How good are the specs on your PC and how reliable is your internet?</label>
+                        <textarea class="form-control" rows="5" name="rig" required
+                                  placeholder="Having 500ms or getting disconnected in the middle of the raid is not good. Could this happen to you?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Personal information</label>
+                        <textarea class="form-control" rows="5" name="personal" required
+                                  placeholder="Tell us as much (or as little) about yourself as you want"></textarea>
+                    </div>
+                    <div class="text-center">
+                         <label>All half-assed and non-serious applications will be rejected immediately!</label>
+                         <p>
+                        <input type=submit value=SUBMIT class=" btn button-custom btn-custom-two">
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
-<!--GRID SECTION END-->
 {% endblock %}

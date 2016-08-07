@@ -41,15 +41,15 @@ interval: 2000 //TIME IN MILLI SECONDS
 /*====================================
 VAGAS SLIDESHOW SCRIPTS
 ======================================*/
-$.vegas('slideshow', {
-backgrounds: [
-{ src: '../static/img/2.jpg', fade: 1000},
-]
-})('overlay', {
-/** SLIDESHOW OVERLAY IMAGE **/
-src: '../static/js/vegas/overlays/06.png' // (06, THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
-});
-
+//$.vegas('slideshow', {
+//backgrounds: [
+//{ src: '../static/img/2.jpg', fade: 1000},
+//]
+//})('overlay', {
+///** SLIDESHOW OVERLAY IMAGE **/
+//src: '../static/js/vegas/overlays/06.png' // (06, THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
+//});
+//
 
 /*====================================
 POPUP IMAGE SCRIPTS
@@ -78,8 +78,8 @@ easing: 'linear',
 queue: false
 }
 });
-$('.caegories a').click(function () {
-$('.caegories .active').removeClass('active');
+$('.categories a').click(function () {
+$('.categories .active').removeClass('active');
 $(this).addClass('active');
 var selector = $(this).attr('data-filter');
 $container.isotope({
@@ -100,10 +100,6 @@ return false;
 /*====================================
 WRITE YOUR CUSTOM SCRIPTS BELOW
 ======================================*/
-
-
-
-
 
 
 
