@@ -1,4 +1,5 @@
 drop table if exists applications;
+drop table if exists users;
 create table applications (
   id integer primary key autoincrement,
   battletag text not null,
@@ -10,4 +11,9 @@ create table applications (
   personal text not null,
   checked bit default 0,
   datetime date default current_timestamp
+);
+create table users (
+  id integer primary key autoincrement,
+  name text not null,
+  pw_salt text not null
 );
