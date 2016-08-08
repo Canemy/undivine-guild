@@ -53,7 +53,7 @@ def close_db(error):
 
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 
@@ -69,7 +69,7 @@ def add_entry():
                [request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']])
     db.commit()
     flash('Application submitted')
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/apps')
