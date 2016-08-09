@@ -168,7 +168,7 @@ margin: 25px 20px;
 SERVICES SECTION STYLES
 ============================================================ */
 
-#services .services-wrapper {
+#applying .applying-wrapper {
 padding: 20px;
 border-radius: 5px;
 -moz-border-radius: 5px;
@@ -182,15 +182,15 @@ cursor: pointer;
 transition: all 0.5s ease-in-out;
 }
 
-#services .services-wrapper:hover {
+#applying .applying-wrapper:hover {
 background-color: rgba(255, 255, 255, 0.20);
 }
 
-#services h3 {
+#applying h3 {
 font-family: 'Oswald', sans-serif;
 }
 
-#services .services-wrapper i {
+#applying .applying-wrapper i {
 margin: 5px;
 color: rgb(155, 60, 195);
 font-size: 60px;
@@ -287,7 +287,7 @@ padding-top: 80px;
 WORK SECTION STYLES
 ==============================*/
 
-#work .categories a.active {
+#gallery .categories a.active {
 background-color: transparent;
 color: #fff;
 }
@@ -298,7 +298,7 @@ color: #fff;
 transition-duration: 0.8s;
 }
 
-#work .work-wrapper {
+#gallery .gallery-wrapper {
 padding: 10px;
 border-radius: 5px;
 -moz-border-radius: 5px;
@@ -313,7 +313,7 @@ transition: all 0.5s ease-in-out;
 border: 1px solid rgb(155, 60, 195);
 }
 
-#work .work-wrapper:hover {
+#gallery .gallery-wrapper:hover {
 background-color: transparent;
 border: 1px solid rgb(155, 60, 195);
 
@@ -325,7 +325,7 @@ filter: alpha(opacity=80); /* ie lt 7 */
 
 }
 
-#work .work-wrapper h4 {
+#gallery .gallery-wrapper h4 {
 padding-top: 10px;
 }
 

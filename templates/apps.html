@@ -1,5 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
+<!--MENU SECTION START-->
+<div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('home') }}"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('home') }}#home">HOME</a></li>
+                <li><a href="{{ url_for('home') }}#grid">ABOUT US</a></li>
+                <li><a href="{{ url_for('home') }}#gallery">GALLERY</a></li>
+                <li><a href="{{ url_for('home') }}#team">TEAM</a></li>
+                <li><a href="{{ url_for('home') }}#applying">APPLYING</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--MENU SECTION END-->
 <section id="apps">
     <div class="container">
         <div class="row text-center header animate-in" data-anim-type="fade-in-up">

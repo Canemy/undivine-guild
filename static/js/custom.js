@@ -69,7 +69,7 @@ type: 'inside'
 FILTER FUNCTIONALITY SCRIPTS
 ======================================*/
 $(window).load(function () {
-var $container = $('#work-div');
+var $container = $('#gallery-div');
 $container.isotope({
 filter: '*',
 animationOptions: {

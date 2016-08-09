@@ -15,5 +15,5 @@ create table applications (
 create table users (
   id integer primary key autoincrement,
   name text not null,
-  pw_salt text not null
+  pw_hash text not null
 );

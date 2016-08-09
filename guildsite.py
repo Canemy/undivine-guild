@@ -7,6 +7,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 # create our little application :)
 from flask import json
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -14,9 +15,7 @@ app.config.from_object(__name__)
 # Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'guild.db'),
-    SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='default'
+    SECRET_KEY  ='ImperfectionGuildSite'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
@@ -69,13 +68,13 @@ def add_entry():
                [request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']])
     db.commit()
     flash('Application submitted')
-    return redirect(url_for('home'))
+    return redirect(url_for('home', _external=True, _scheme='http'))
 
 
 @app.route('/apps')
 def apps():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.execute('select id, battletag, experience, class, improve, attendance, rig, personal, checked, datetime from applications order by id desc')
     apps = cur.fetchall()
@@ -86,14 +85,17 @@ def apps():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
+        db = get_db()
+        cur = db.execute('select * from users where name = ?', [request.form['username']])
+        user = cur.fetchone()
+        if not user:
             error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
+        elif not check_password_hash(user["pw_hash"], request.form['password']):
             error = 'Invalid password'
         else:
             session['logged_in'] = True
             flash('You were logged in')
-            return redirect(url_for('apps'))
+            return redirect(url_for('apps', _external=True, _scheme='http'))
     return render_template('login.html', error=error)
 
 
@@ -101,7 +103,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('apps'))
+    return redirect(url_for('apps', _external=True, _scheme='http'))
 
 
 if __name__ == "__main__":
