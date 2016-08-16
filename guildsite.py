@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import requests
 from contextlib import closing
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -18,7 +19,6 @@ app.config.update(dict(
     SECRET_KEY  ='ImperfectionGuildSite'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
 
 def connect_db():
     """Connects to the specific database."""
@@ -68,6 +68,7 @@ def add_entry():
                [request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']])
     db.commit()
     flash('Application submitted')
+    requests.post('localhost:8787/applications', json=request.form)
     return redirect(url_for('home', _external=True, _scheme='http'))
 
 
