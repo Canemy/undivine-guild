@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from urllib.parse import urlparse
+import urllib.parse as urlparse
 from contextlib import closing
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -20,8 +20,8 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-urllib.parse.uses_netloc.append("postgres")
-url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
 conn = psycopg2.connect(
     database=url.path[1:],
