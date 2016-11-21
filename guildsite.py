@@ -23,23 +23,25 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
-
 def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
+     """Connects to the specific database."""
+    rv = psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )
     return rv
 
-
 def init_db():
-    with closing(sqlite3.connect(app.config["DATABASE"])) as db:
+    with closing(psycopg2.connect(
+        database=url.path[1:],
+        user=url.username,
+        password=url.password,
+        host=url.hostname,
+        port=url.port
+    )) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             print("executing schema.sql")
             db.cursor().executescript(f.read())
