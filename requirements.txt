@@ -1,4 +1,3 @@
 Flask
 werkzeug
-os
 sqlite3
