@@ -20,6 +20,7 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
@@ -29,10 +30,10 @@ def connect_db():
     return rv
 
 def init_db():
-    with closing(psycopg2.connect()) as db:
+    with closing(psycopg2.connect(database=url.path[1:], user=url.username, password=url.password, host=url.hostname, port=url.port)) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             print("executing schema.sql")
-            db.cursor().executescript(f.read())
+            #db.cursor().executescript(f.read())
             db.commit()
 
 
