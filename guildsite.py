@@ -68,7 +68,6 @@ def add_entry():
                [request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']])
     db.commit()
     flash('Application submitted')
-    requests.post('http://localhost:8787/applications', json=request.form)
     return redirect(url_for('home', _external=True, _scheme='http'))
 
 
