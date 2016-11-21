@@ -1,1 +1,1 @@
-web: gunicorn guildsite.py
+web: python guildsite.py
