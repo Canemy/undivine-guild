@@ -1,6 +1,5 @@
 import os
 import sqlite3
-import requests
 from contextlib import closing
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
