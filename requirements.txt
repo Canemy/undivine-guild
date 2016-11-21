@@ -1,2 +1,2 @@
 Flask
-werkzeug.security
+werkzeug
