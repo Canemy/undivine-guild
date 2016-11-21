@@ -1,5 +1,6 @@
 import os
-import sqlite3
+import psycopg2
+import urlparse
 from contextlib import closing
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -18,6 +19,17 @@ app.config.update(dict(
     SECRET_KEY  ='ImperfectionGuildSite'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
 
 def connect_db():
     """Connects to the specific database."""
@@ -38,16 +50,16 @@ def get_db():
     """Opens a new database connection if there is none yet for the
     current application context.
     """
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
+    if not hasattr(g, 'psql_db'):
+        g.psql_db = connect_db()
+    return g.psql_db
 
 
 @app.teardown_appcontext
 def close_db(error):
     """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
+    if hasattr(g, 'psql_db'):
+        g.psql_db.close()
 
 
 @app.route('/')
