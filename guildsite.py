@@ -30,8 +30,7 @@ def connect_db():
         user=url.username,
         password=url.password,
         host=url.hostname,
-        port=url.port
-    )
+        port=url.port)
     return rv
 
 def init_db():
