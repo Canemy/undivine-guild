@@ -21,9 +21,6 @@ app.config.update(dict(
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
 def connect_db():
     """Connects to the specific database."""
     urlparse.uses_netloc.append("postgres")
