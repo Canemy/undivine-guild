@@ -110,4 +110,4 @@ def logout():
 if __name__ == "__main__":
     if not os.path.isfile("guild.db"):
         init_db()
-    app.run()
+    app.run(host='0.0.0.0')
