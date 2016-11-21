@@ -1,1 +1,1 @@
-web: python guildsite.py $PORT
+worker: python guildsite.py $PORT
