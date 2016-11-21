@@ -1,6 +1,6 @@
 import os
 import psycopg2
-import urllib.parse
+from urllib.parse import urlparse
 from contextlib import closing
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
