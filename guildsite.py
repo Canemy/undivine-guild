@@ -32,7 +32,7 @@ def init_db():
     with closing(psycopg2.connect(database=url.path[1:], user=url.username, password=url.password, host=url.hostname, port=url.port)) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             print("executing schema.sql")
-            #db.cursor().executescript(f.read())
+            db.cursor().execute(f.read())
             db.commit()
 
 
@@ -110,4 +110,5 @@ def logout():
 if __name__ == "__main__":
     if not os.path.isfile("guild.db"):
         init_db()
-    app.run(host='0.0.0.0', port=int(os.environ['PORT']))
+    app.run() #local
+    #app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
