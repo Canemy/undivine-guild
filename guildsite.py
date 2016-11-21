@@ -65,8 +65,9 @@ def apply():
 @app.route('/add', methods=['POST'])
 def add_entry():
     db = get_db()
-    db.execute('insert into applications (battletag, experience, class, improve, attendance, rig, personal) values (?, ?, ?, ?, ?, ?, ?)',
-               [request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']])
+    cur = db.cursor()
+    cur.execute('insert into applications (battletag, experience, class, improve, attendance, rig, personal) values (%s, %s, %s, %s, %s, %s, %s)',
+                (request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']))
     db.commit()
     flash('Application submitted')
     return redirect(url_for('home', _external=True, _scheme='http'))
@@ -77,7 +78,8 @@ def apps():
     if not session.get('logged_in'):
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
-    cur = db.execute('select id, battletag, experience, class, improve, attendance, rig, personal, checked, datetime from applications order by id desc')
+    cur = db.cursor()
+    cur = cur.execute('select id, battletag, experience, class, improve, attendance, rig, personal, datetime from applications order by id desc')
     apps = cur.fetchall()
     return render_template('apps.html', apps=apps)
 
@@ -87,7 +89,8 @@ def login():
     error = None
     if request.method == 'POST':
         db = get_db()
-        cur = db.execute('select * from users where name = ?', [request.form['username']])
+        cur = db.cursor()
+        cur = cur.execute('select * from users where name = %s', (request.form['username']))
         user = cur.fetchone()
         if not user:
             error = 'Invalid username'
