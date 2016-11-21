@@ -1,1 +1,1 @@
-web: python guildsite.py
+web: python guildsite.py -p $PORT
