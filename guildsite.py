@@ -16,7 +16,7 @@ app.config.from_object(__name__)
 # Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'guild.db'),
-    SECRET_KEY  ='ImperfectionGuildSite'
+    SECRET_KEY  ='Undivine41295812981'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
@@ -113,5 +113,5 @@ def logout():
 if __name__ == "__main__":
     if not os.path.isfile("guild.db"):
         init_db()
-    #app.run() #local
-    app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
+    app.run() #local
+    #app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
