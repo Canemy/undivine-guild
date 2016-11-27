@@ -1,0 +1,76 @@
+{% extends "admin_layout.html" %}
+{% block body %}
+
+
+
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Raid name</th>
+                        <th>Bosses</th>
+                        <th>Normal</th>
+                        <th>Heroic</th>
+                        <th>Mythic</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for raid in raids %}
+                    <tr>
+                        <th>{{ raid.name }}</th>
+                        <td>{{ raid.bosses }}</td>
+                        <td>{{ raid.normal }}</td>
+                        <td>{{ raid.heroic }}</td>
+                        <td>{{ raid.mythic }}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                    <form action="{{ url_for('add_raid') }}" method=post class=add-entry>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-group">
+                                    <input class="form-control" name="raid" required placeholder="">
+                                </div>
+                            </th>
+
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="bosses" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="normal" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="heroic" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" name="mythic" required placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                 <input type=submit value=ADD class=" btn button-custom btn-custom-two">
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+{% endblock %}

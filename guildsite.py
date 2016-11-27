@@ -62,8 +62,22 @@ def apply():
     return render_template('apply.html')
 
 
-@app.route('/add', methods=['POST'])
-def add_entry():
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+
+@app.route('/admin_raids')
+def admin_raids():
+    db = get_db()
+    cur = db.cursor()
+    cur = cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id desc')
+    raids = cur.fetchall()
+    return render_template('admin_raids.html', raids=raids)
+
+
+@app.route('/add_app', methods=['POST'])
+def add_app():
     db = get_db()
     cur = db.cursor()
     cur.execute('insert into applications (battletag, experience, class, improve, attendance, rig, personal) values (%s, %s, %s, %s, %s, %s, %s)',
@@ -82,6 +96,17 @@ def apps():
     cur = cur.execute('select id, battletag, experience, class, improve, attendance, rig, personal, datetime from applications order by id desc')
     apps = cur.fetchall()
     return render_template('apps.html', apps=apps)
+
+
+@app.route('/add_raid', methods=['POST'])
+def add_raid():
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('insert into progression (name, bosses, normal, heroic, mythic) values (%s, %s, %s, %s, %s)',
+                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic']))
+    db.commit()
+    flash('Raid submitted')
+    return redirect(url_for('admin_raids', _external=True, _scheme='http'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
