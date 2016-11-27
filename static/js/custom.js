@@ -107,4 +107,18 @@ window.setTimeout(function() {
     });
 }, 4000);
 
+//Guild rank from wowprogress
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}
+var obj = JSON.parse(Get("http://www.wowprogress.com/guild/eu/twisting-nether/Undivine/json_rank"));
+document.getElementById("guildrank").innerHTML =
+"Twisting Nether " +
+obj.realm_rank +
+", World "+
+obj.world_rank;
+
 });
