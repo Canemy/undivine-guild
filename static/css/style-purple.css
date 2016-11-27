@@ -99,6 +99,41 @@ border-top: 2px solid rgb(155, 60, 195);
     color: #C79C6E
 }
 
+.prioHigh {
+    color: #ff420e;
+}
+
+.prioMedium {
+    color: #ffd320;
+}
+
+.prioLow {
+    color: #7ac491;
+}
+
+.prioNone {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.table-borderless tbody tr td,
+.table-borderless tbody tr th,
+.table-borderless thead tr th,
+.table-borderless thead tr td,
+.table-borderless tfoot tr th,
+.table-borderless tfoot tr td {
+    border: none;
+}
+
+.table-borderless tbody tr td h4,
+.table-borderless tbody tr th h4,
+.table-borderless thead tr th h4,
+.table-borderless thead tr td h4,
+.table-borderless tfoot tr th h4,
+.table-borderless tfoot tr td h4{
+margin-top: 0px;
+margin-bottom: 0px;
+}
 /* =============================================================
 CUSTOM BUTTON STYLES
 ============================================================ */
