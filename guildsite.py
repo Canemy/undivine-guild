@@ -54,7 +54,7 @@ def close_db(error):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html' )
 
 
 @app.route('/apply')
@@ -71,7 +71,7 @@ def admin():
 def admin_raids():
     db = get_db()
     cur = db.cursor()
-    cur = cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id desc')
+    cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
     raids = cur.fetchall()
     return render_template('admin_raids.html', raids=raids)
 
@@ -89,11 +89,11 @@ def add_app():
 
 @app.route('/apps')
 def apps():
-    if not session.get('logged_in'):
-        return redirect(url_for('login', _external=True, _scheme='http'))
+    #if not session.get('logged_in'):
+    #    return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur = cur.execute('select id, battletag, experience, class, improve, attendance, rig, personal, datetime from applications order by id desc')
+    cur.execute('select id, battletag, experience, class, improve, attendance, rig, personal, datetime from applications order by id desc')
     apps = cur.fetchall()
     return render_template('apps.html', apps=apps)
 

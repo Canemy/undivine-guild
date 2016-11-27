@@ -24,11 +24,11 @@
                 <tbody>
                     {% for raid in raids %}
                     <tr>
-                        <th>{{ raid.name }}</th>
-                        <td>{{ raid.bosses }}</td>
-                        <td>{{ raid.normal }}</td>
-                        <td>{{ raid.heroic }}</td>
-                        <td>{{ raid.mythic }}</td>
+                        <th>{{ raid[1] }}</th>
+                        <td>{{ raid[2] }}</td>
+                        <td>{{ raid[3] }}</td>
+                        <td>{{ raid[4] }}</td>
+                        <td>{{ raid[5] }}</td>
                         <td></td>
                     </tr>
                     {% endfor %}
@@ -68,6 +68,29 @@
                 </tbody>
             </table>
         </div>
+        <h2>Progression</h2>
+        {% for raid in raids %}
+        <h3>{{ raid[1] }}</h3>
+        <h4>Normal</h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[3]/raid[2])*100 }}%">
+                <span>{{ raid[3] }}/{{ raid[2] }}</span>
+            </div>
+        </div>
+        <h4>Heroic</h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[4]/raid[2])*100 }}%">
+                <span>{{ raid[4] }}/{{ raid[2] }}</span>
+            </div>
+        </div>
+        <h4>Mythic</h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[5]/raid[2])*100 }}%">
+                <span>{{ raid[5] }}/{{ raid[2] }}</span>
+            </div>
+        </div>
+        <h3 style="padding-top: 40px"></h3>
+        {% endfor %}
     </div>
 </div>
 <!-- /#page-content-wrapper -->

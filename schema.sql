@@ -25,4 +25,4 @@ create table progression (
   heroic smallint not null,
   mythic smallint not null
 );
-insert into progression (name, bosses, normal, heroic, mythic) values ('bla', 1, 1, 1, 1)
+insert into progression (name, bosses, normal, heroic, mythic) values ('Emerald Nightmare', 7, 7, 7, 0);
