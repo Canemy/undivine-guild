@@ -16,17 +16,19 @@ app.config.from_object(__name__)
 # Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'guild.db'),
-    SECRET_KEY  ='Undivine41295812981'
+    SECRET_KEY='Undivine41295812981'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
+
 def connect_db():
     """Connects to the specific database."""
     rv = psycopg2.connect(database=url.path[1:], user=url.username, password=url.password, host=url.hostname, port=url.port)
     return rv
+
 
 def init_db():
     with closing(psycopg2.connect(database=url.path[1:], user=url.username, password=url.password, host=url.hostname, port=url.port)) as db:
@@ -52,9 +54,10 @@ def close_db(error):
         g.psql_db.close()
 
 
+# PUBLIC PAGES
 @app.route('/')
 def home():
-    return render_template('index.html' )
+    return render_template('index.html')
 
 
 @app.route('/apply')
@@ -62,13 +65,29 @@ def apply():
     return render_template('apply.html')
 
 
+# PUBLIC FUNCTIONS
+@app.route('/add_app', methods=['POST'])
+def add_app():
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional) '
+                'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                (request.form['name'], request.form['age'], request.form['country'], request.form['battletag'], request.form['armory'], request.form['specs'], request.form['rig'],
+                 request.form['experience'], request.form['improve'], request.form['what_it_takes'], request.form['ui'], request.form['logs'], request.form['headset'], request.form['raids'],
+                 request.form['prevention'], request.form['additional']))
+    db.commit()
+    flash('Application submitted')
+    return redirect(url_for('home', _external=True, _scheme='http'))
+
+
+# ADMIN PAGES
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
 
 
-@app.route('/admin_raids')
-def admin_raids():
+@app.route('/raids')
+def raids():
     db = get_db()
     cur = db.cursor()
     cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
@@ -76,28 +95,19 @@ def admin_raids():
     return render_template('admin_raids.html', raids=raids)
 
 
-@app.route('/add_app', methods=['POST'])
-def add_app():
-    db = get_db()
-    cur = db.cursor()
-    cur.execute('insert into applications (battletag, experience, class, improve, attendance, rig, personal) values (%s, %s, %s, %s, %s, %s, %s)',
-                (request.form['battletag'], request.form['experience'], request.form['class'], request.form['improve'], request.form['attendance'], request.form['rig'], request.form['personal']))
-    db.commit()
-    flash('Application submitted')
-    return redirect(url_for('home', _external=True, _scheme='http'))
-
-
 @app.route('/apps')
 def apps():
-    #if not session.get('logged_in'):
+    # if not session.get('logged_in'):
     #    return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur.execute('select id, battletag, experience, class, improve, attendance, rig, personal, datetime from applications order by id desc')
+    cur.execute('select id, name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional, datetime '
+                'from applications order by id desc')
     apps = cur.fetchall()
-    return render_template('apps.html', apps=apps)
+    return render_template('admin_apps.html', apps=apps)
 
 
+# ADMIN FUNCTIONS
 @app.route('/add_raid', methods=['POST'])
 def add_raid():
     db = get_db()
@@ -109,6 +119,7 @@ def add_raid():
     return redirect(url_for('admin_raids', _external=True, _scheme='http'))
 
 
+# USER ACCOUNTS
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -138,5 +149,5 @@ def logout():
 if __name__ == "__main__":
     if not os.path.isfile("guild.db"):
         init_db()
-    #app.run() #local
+    #app.run()  # local
     app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web

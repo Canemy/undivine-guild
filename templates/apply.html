@@ -14,10 +14,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url_for('home') }}#home">HOME</a></li>
-                <li><a href="{{ url_for('home') }}#grid">ABOUT US</a></li>
-                <li><a href="{{ url_for('home') }}#gallery">GALLERY</a></li>
+                <li><a href="{{ url_for('home') }}#grid">ABOUT</a></li>
+                <!--<li><a href="{{ url_for('home') }}#gallery">GALLERY</a></li> TODO: implement gallery-->
                 <li><a href="{{ url_for('home') }}#team">TEAM</a></li>
-                <li><a href="{{ url_for('home') }}#applying">APPLYING</a></li>
+                <li><a href="{{ url_for('home') }}#applying">APPLY</a></li>
             </ul>
         </div>
     </div>
@@ -33,43 +33,80 @@
         </div>
         <form action="{{ url_for('add_app') }}" method=post class=add-entry>
             <div class="row animate-in" data-anim-type="fade-in-up">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <h2>Personal</h2>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" name="name" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input class="form-control" name="age" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Nationality</label>
+                        <input class="form-control" name="country" required placeholder="">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <h2>Character</h2>
                     <div class="form-group">
                         <label>BattleTag</label>
                         <input class="form-control" name="battletag" required placeholder="BattleTag#1234">
                     </div>
                     <div class="form-group">
-                        <label>What is your previous experience in WoW and raiding?</label>
-                        <textarea class="form-control" rows="5" name="experience" required placeholder="How long have you been raiding in WoW and what's your best raiding achievement."></textarea>
+                        <label>Armory Link</label>
+                        <input class="form-control" name="armory" required placeholder="">
                     </div>
                     <div class="form-group">
-                        <label>What classes/roles are you most familiar with and what are you looking forward to playing in Legion?</label>
-                        <textarea class="form-control" rows="5" name="class" required placeholder="Also list how many and what alts you plan on having."></textarea>
+                        <label>Mainspec & Offspec</label>
+                        <input class="form-control" name="specs" required placeholder="">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h2>Additional</h2>
+                    <div class="form-group">
+                        <label>How good are the specs on your PC and how reliable is your internet?</label>
+                        <textarea class="form-control" rows="5" name="rig" required placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tell us about your raiding experiences and your past guilds and reason for leaving them.</label>
+                        <textarea class="form-control" rows="5" name="experience" required placeholder=""></textarea>
                     </div>
                     <div class="form-group">
                         <label>What resources do you use to analyze and improve yourself?</label>
-                        <textarea class="form-control" rows="5" name="improve" required
-                                  placeholder="Where do you find the latest information about your class? How do you get your stat priorities? Do you use SimCraft? Logs? Do you set up proper weakauras/other addons to get the most out of your character?"></textarea>
+                        <textarea class="form-control" rows="5" name="improve" required placeholder=""></textarea>
                     </div>
                     <div class="form-group">
-                        <label>What kind of attendance can we expect from you?</label>
-                        <textarea class="form-control" rows="5" name="attendance" required
-                                  placeholder="100% attendance is great, but real life comes in the way sometimes. Do you work weird hours or play tennis with your friends every 2nd Sunday evening of the month? Let us know."></textarea>
+                        <label>Undivine is aiming to be one of the premier guilds on Twisting Nether. Why do you think you have what it takes to get there?</label>
+                        <textarea class="form-control" rows="5" name="what_it_takes" required placeholder=""></textarea>
                     </div>
                     <div class="form-group">
-                        <label>What is your gaming setup? How good are the specs on your PC and how reliable is your internet?</label>
-                        <textarea class="form-control" rows="5" name="rig" required
-                                  placeholder="Having 500ms or getting disconnected in the middle of the raid is not good. Could this happen to you?"></textarea>
+                        <label>Post a screenshot of your ui while in a raid and in combat:</label>
+                        <input class="form-control" name="ui" required placeholder="Upload images to a site like imgur.com">
                     </div>
                     <div class="form-group">
-                        <label>Personal information</label>
-                        <textarea class="form-control" rows="5" name="personal" required
-                                  placeholder="Tell us as much (or as little) about yourself as you want."></textarea>
+                        <label>If you have some Warcraft logs we can see, please do link them here:</label>
+                        <input class="form-control" name="logs" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have a Microphone/Headset, and are you able and comfortable with talking during raids?</label>
+                        <input class="form-control" name="headset" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>We currently raid from 19:45 - 23:00 server time on Wednesday/Sunday/Monday, will you be able to consistently raid at these times?</label>
+                        <input class="form-control" name="raids" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have anything now or in the near future that will prevent you from attending the raids?</label>
+                        <textarea class="form-control" rows="5" name="prevention" required placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Anything else you would like to tell us?</label>
+                        <textarea class="form-control" rows="5" name="additional" required placeholder=""></textarea>
                     </div>
                     <div class="text-center">
-                        <label>All half-assed and non-serious applications will be rejected immediately!</label>
-                        <p>
-                            <input type=submit value=SUBMIT class=" btn button-custom btn-custom-two">
+                        <input type="submit" value="SUBMIT" class=" btn button-custom btn-custom-two">
                     </div>
                 </div>
             </div>

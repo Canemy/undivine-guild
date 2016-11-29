@@ -1,0 +1,48 @@
+{% extends "admin_layout.html" %}
+{% block body %}
+
+
+
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row" id="accordion" role="tablist" aria-multiselectable="true">
+            {% for app in apps %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{ app[0] }}">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ app[0] }}" aria-expanded="false" aria-controls="collapse{{ app[0] }}">
+                            {{ app[4] }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{ app[0] }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ app[0] }}">
+                    <li><b>Name:</b> {{ app[1] }}
+                    <li><b>Age:</b> {{ app[2] }}
+                    <li><b>Nationality:</b> {{ app[3] }}
+                    <li><b>Armory:</b> {{ app[5] }}
+                    <li><b>Main/Offspec:</b> {{ app[6] }}
+                    <li><b>Computer:</b> {{ app[7] }}
+                    <li><b>Past experience:</b> {{ app[8] }}
+                    <li><b>How improves:</b> {{ app[9] }}
+                    <li><b>Have what it takes?:</b> {{ app[10] }}
+                    <li><b>UI:</b> {{ app[11] }}
+                    <li><b>Logs:</b> {{ app[12] }}
+                    <li><b>Headset:</b> {{ app[13] }}
+                    <li><b>Attendance:</b> {{ app[14] }}
+                    <li><b>Future prevention:</b> {{ app[15] }}
+                    <li><b>Additional info:</b> {{ app[16] }}
+                    <li><b>Submitted:</b> {{ app[17] }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+{% endblock %}
