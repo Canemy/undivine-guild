@@ -22,16 +22,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for raid in raids %}
-                    <tr>
-                        <th>{{ raid[1] }}</th>
-                        <td>{{ raid[2] }}</td>
-                        <td>{{ raid[3] }}</td>
-                        <td>{{ raid[4] }}</td>
-                        <td>{{ raid[5] }}</td>
-                        <td></td>
-                    </tr>
-                    {% endfor %}
+                    <form action="{{ url_for('edit_raid') }}" method=post class=add-entry>
+                        {% for raid in raids %}
+                        <tr>
+                            <th>
+                                <input class="form-control" name="id" value="{{ raid[0] }}" style="display:none;">
+                                <input class="form-control" name="raid" value="{{ raid[1] }}">
+                            </th>
+                            <td><input class="form-control" name="bosses" value="{{ raid[2] }}"></td>
+                            <td><input class="form-control" name="normal" value="{{ raid[3] }}"></td>
+                            <td><input class="form-control" name="heroic" value="{{ raid[4] }}"></td>
+                            <td><input class="form-control" name="mythic" value="{{ raid[5] }}"></td>
+                            <td><input type=submit value=UPDATE class=" btn button-custom btn-custom-two"></td>
+                        </tr>
+                        {% endfor %}
+                    </form>
                     <form action="{{ url_for('add_raid') }}" method=post class=add-entry>
                         <tr>
                             <th scope="row">
@@ -70,27 +75,22 @@
         </div>
         <h2>Progression</h2>
         {% for raid in raids %}
-        <h3>{{ raid[1] }}</h3>
-        <h4>Normal</h4>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[3]/raid[2])*100 }}%">
-                <span>{{ raid[3] }}/{{ raid[2] }}</span>
-            </div>
-        </div>
-        <h4>Heroic</h4>
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[4]/raid[2])*100 }}%">
-                <span>{{ raid[4] }}/{{ raid[2] }}</span>
-            </div>
-        </div>
-        <h4>Mythic</h4>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" style="width:{{ (raid[5]/raid[2])*100 }}%">
-                <span>{{ raid[5] }}/{{ raid[2] }}</span>
-            </div>
-        </div>
+        <h1 style="text-transform: uppercase">
+            {% if raid[5] != 0 %}
+                {{ raid[1] }} {{ raid[5] }}/{{ raid[2] }}M
+            {% elif raid[4] != 0 %}
+                {{ raid[1] }} {{ raid[4] }}/{{ raid[2] }}H
+            {% elif raid[3] != 0 %}
+                {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+            {% else %}
+                {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+            {% endif %}
+        </h1>
         <h3 style="padding-top: 40px"></h3>
         {% endfor %}
+
+
+
     </div>
 </div>
 <!-- /#page-content-wrapper -->

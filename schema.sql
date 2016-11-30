@@ -34,10 +34,13 @@ create table progression (
   heroic smallint not null,
   mythic smallint not null
 );
-insert into progression (name, bosses, normal, heroic, mythic) values ('Emerald Nightmare', 7, 7, 7, 0);
+insert into progression (name, bosses, normal, heroic, mythic) values ('Emerald Nightmare', 7, 7, 7, 3);
+insert into progression (name, bosses, normal, heroic, mythic) values ('Trial of Valor', 3, 3, 0, 0);
 insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional)
 values ('name', 'age', 'country', 'battletag', 'armory', 'specs', 'rig', 'experience', 'improve', 'what_it_takes', 'ui', 'logs', 'headset', 'raids', 'prevention', 'additional');
 insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional)
 values ('name', 'age', 'country', 'battletag', 'armory', 'specs', 'rig', 'experience', 'improve', 'what_it_takes', 'ui', 'logs', 'headset', 'raids', 'prevention', 'additional');
 insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional)
 values ('name', 'age', 'country', 'battletag', 'armory', 'specs', 'rig', 'experience', 'improve', 'what_it_takes', 'ui', 'logs', 'headset', 'raids', 'prevention', 'additional');
+insert into users (name, pw_hash)
+values ('admin', 'pbkdf2:sha1:1000$86o1V3VC$101ccd9dbea9aac4f760b9b783c4ba2f35fad8d5');

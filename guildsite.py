@@ -57,7 +57,11 @@ def close_db(error):
 # PUBLIC PAGES
 @app.route('/')
 def home():
-    return render_template('index.html')
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
+    raids = cur.fetchall()
+    return render_template('index.html', raids=raids)
 
 
 @app.route('/apply')
@@ -83,11 +87,15 @@ def add_app():
 # ADMIN PAGES
 @app.route('/admin')
 def admin():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
     return render_template('admin.html')
 
 
 @app.route('/raids')
 def raids():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
     cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
@@ -97,8 +105,8 @@ def raids():
 
 @app.route('/apps')
 def apps():
-    # if not session.get('logged_in'):
-    #    return redirect(url_for('login', _external=True, _scheme='http'))
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
     cur.execute('select id, name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional, datetime '
@@ -110,13 +118,26 @@ def apps():
 # ADMIN FUNCTIONS
 @app.route('/add_raid', methods=['POST'])
 def add_raid():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
     cur.execute('insert into progression (name, bosses, normal, heroic, mythic) values (%s, %s, %s, %s, %s)',
                 (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic']))
     db.commit()
-    flash('Raid submitted')
-    return redirect(url_for('admin_raids', _external=True, _scheme='http'))
+    return redirect(url_for('raids', _external=True, _scheme='http'))
+
+
+@app.route('/edit_raid', methods=['POST'])
+def edit_raid():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('update progression set name=%s, bosses=%s, normal=%s, heroic=%s, mythic=%s where id=%s',
+                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic'], request.form['id']))
+    db.commit()
+    return redirect(url_for('raids', _external=True, _scheme='http'))
 
 
 # USER ACCOUNTS
@@ -126,16 +147,15 @@ def login():
     if request.method == 'POST':
         db = get_db()
         cur = db.cursor()
-        cur = cur.execute('select * from users where name = %s', (request.form['username']))
+        cur.execute('select * from users where name = %s', (request.form['username'], ))
         user = cur.fetchone()
         if not user:
-            error = 'Invalid username'
-        elif not check_password_hash(user["pw_hash"], request.form['password']):
-            error = 'Invalid password'
+            error = 'Invalid username or password'
+        elif not check_password_hash(user[2], request.form['password']):
+            error = 'Invalid username or password'
         else:
             session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('apps', _external=True, _scheme='http'))
+            return redirect(url_for('admin', _external=True, _scheme='http'))
     return render_template('login.html', error=error)
 
 
@@ -143,11 +163,11 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('apps', _external=True, _scheme='http'))
+    return redirect(url_for('home', _external=True, _scheme='http'))
 
 
 if __name__ == "__main__":
-    if not os.path.isfile("guild.db"):
-        init_db()
+    # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
+    init_db()
     #app.run()  # local
     app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web

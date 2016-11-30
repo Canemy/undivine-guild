@@ -108,17 +108,19 @@ window.setTimeout(function() {
 }, 4000);
 
 //Guild rank from wowprogress
-function Get(yourUrl){
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourUrl,false);
-    Httpreq.send(null);
-    return Httpreq.responseText;
-}
-var obj = JSON.parse(Get("http://www.wowprogress.com/guild/eu/twisting-nether/Undivine/json_rank"));
+
+$.getJSON(
+"http://query.yahooapis.com/v1/public/yql?q=SELECT * FROM json WHERE url=\"www.wowprogress.com/guild/eu/twisting-nether/Undivine/json_rank\"&format=json",
+function(jsonp) {
+var world = jsonp.query.results.json.world_rank
+var realm = jsonp.query.results.json.realm_rank
 document.getElementById("guildrank").innerHTML =
 "Twisting Nether " +
-obj.realm_rank +
+realm +
 ", World "+
-obj.world_rank;
+world
+;});
 
+
+//END OF JS
 });

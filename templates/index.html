@@ -41,12 +41,19 @@
         </div>
         <div class="row animate-in" data-anim-type="fade-in-up">
             <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
-                <h1>
-                    3/7M EMERALD NIGHTMARE
+                {% for raid in raids %}
+                <h1 style="text-transform: uppercase">
+                    {% if raid[5] != 0 %}
+                        {{ raid[1] }} {{ raid[5] }}/{{ raid[2] }}M
+                    {% elif raid[4] != 0 %}
+                        {{ raid[1] }} {{ raid[4] }}/{{ raid[2] }}H
+                    {% elif raid[3] != 0 %}
+                        {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+                    {% else %}
+                        {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+                    {% endif %}
                 </h1>
-                <h1>
-                    3/3N TRIAL OF VALOR
-                </h1>
+                {% endfor %}
                 <h3 id="guildrank">
                 </h3>
                 <div class="social">
