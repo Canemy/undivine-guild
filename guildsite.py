@@ -168,6 +168,6 @@ def logout():
 
 if __name__ == "__main__":
     # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
-    init_db()
+    #init_db()
     #app.run()  # local
     app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
