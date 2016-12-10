@@ -51,67 +51,67 @@ width: 50px;
 border-top: 2px solid rgb(155, 60, 195);
 }
 
-.death_knight {
+.DK {
     color: #C41F3B
 }
 
-.demon_hunter {
+.DH {
     color: #A330C9
 }
 
-.druid {
+.Druid {
     color: #FF7D0A
 }
 
-.hunter {
+.Hunter {
     color: #ABD473
 }
 
-.mage {
+.Mage {
     color: #69CCF0
 }
 
-.monk {
+.Monk {
     color: #00FF96
 }
 
-.paladin {
+.Paladin {
     color: #F58CBA
 }
 
-.priest {
+.Priest {
     color: #FFFFFF
 }
 
-.rogue {
+.Rogue {
     color: #FFF569
 }
 
-.shaman {
+.Shaman {
     color: #0070DE
 }
 
-.warlock {
+.Warlock {
     color: #9482C9
 }
 
-.warrior {
+.Warrior {
     color: #C79C6E
 }
 
-.prioHigh {
+.High {
     color: #ff420e;
 }
 
-.prioMedium {
+.Medium {
     color: #ffd320;
 }
 
-.prioLow {
+.Low {
     color: #7ac491;
 }
 
-.prioNone {
+.None {
     color: gray;
     text-decoration: line-through;
 }

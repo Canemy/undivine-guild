@@ -1,0 +1,90 @@
+{% extends "admin_layout.html" %}
+{% block body %}
+
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table">
+                 <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Spec 1</th>
+                        <th>Spec 2</th>
+                        <th>Spec 3</th>
+                        <th>Spec 4</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for recruit in recruitment %}
+                    <form action="{{ url_for('edit_recruitment') }}" method=post class=add-entry>
+
+                        <tr>
+                            <th>
+                                <input class="form-control" name="id" value="{{ recruit[0] }}" style="display:none;">
+                                <h4 class="{{ recruit[1] }}">{{ recruit[1] }}{{ request.form['id'] }}</h4>
+                            </th>
+                            <td>
+                                <div class="form-group">
+                                    <label for="spec1">{{ recruit[2] }}</label>
+                                    <select class="form-control" name="spec1" id="spec1">
+                                        <option selected="selected"  hidden="hidden" value="{{ recruit[3] }}">{{ recruit[3] }}</option>
+                                        <option>None</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label for="spec2">{{ recruit[4] }}</label>
+                                    <select class="form-control" name="spec2" id="spec2">
+                                        <option selected="selected"  hidden="hidden" value="{{ recruit[5] }}">{{ recruit[5] }}</option>
+                                        <option>None</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group" {% if recruit[6] == '' %} hidden="hidden" {% endif %}>
+                                    <label for="spec3">{{ recruit[6] }}</label>
+                                    <select class="form-control" name="spec3" id="spec3">
+                                        <option selected="selected"  hidden="hidden" value="{{ recruit[7] }}">{{ recruit[7] }}</option>
+                                        <option>None</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group" {% if recruit[8] == '' %} hidden="hidden" {% endif %}>
+                                    <label for="spec4">{{ recruit[8] }}</label>
+                                    <select class="form-control" name="spec4" id="spec4">
+                                        <option selected="selected"  hidden="hidden" value="{{ recruit[9] }}">{{ recruit[9] }}</option>
+                                        <option>None</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td><input type=submit value=UPDATE class=" btn button-custom btn-custom-two"></td>
+                        </tr>
+                    </form>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+{% endblock %}

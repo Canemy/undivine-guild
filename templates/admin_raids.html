@@ -22,8 +22,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for raid in raids %}
                     <form action="{{ url_for('edit_raid') }}" method=post class=add-entry>
-                        {% for raid in raids %}
                         <tr>
                             <th>
                                 <input class="form-control" name="id" value="{{ raid[0] }}" style="display:none;">
@@ -35,8 +35,8 @@
                             <td><input class="form-control" name="mythic" value="{{ raid[5] }}"></td>
                             <td><input type=submit value=UPDATE class=" btn button-custom btn-custom-two"></td>
                         </tr>
-                        {% endfor %}
                     </form>
+                    {% endfor %}
                     <form action="{{ url_for('add_raid') }}" method=post class=add-entry>
                         <tr>
                             <th scope="row">

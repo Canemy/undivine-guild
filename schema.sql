@@ -1,46 +1,74 @@
-drop table if exists applications;
-drop table if exists users;
-drop table if exists progression;
-create table applications (
-  id serial primary key ,
-  name text not null,
-  age text not null,
-  country text not null,
-  battletag text not null,
-  armory text not null,
-  specs text not null,
-  rig text not null,
-  experience text not null,
-  improve text not null,
-  what_it_takes text not null,
-  ui text not null,
-  logs text not null,
-  headset text not null,
-  raids text not null,
-  prevention text not null,
-  additional text not null,
-  datetime date default current_timestamp
-);
-create table users (
+--drop table if exists applications;
+--drop table if exists users;
+--drop table if exists progression;
+drop table if exists recruitment;
+--create table applications (
+--  id serial primary key ,
+--  name text not null,
+--  age text not null,
+--  country text not null,
+--  battletag text not null,
+--  armory text not null,
+--  specs text not null,
+--  rig text not null,
+--  experience text not null,
+--  improve text not null,
+--  what_it_takes text not null,
+--  ui text not null,
+--  logs text not null,
+--  headset text not null,
+--  raids text not null,
+--  prevention text not null,
+--  additional text not null,
+--  datetime date default current_timestamp
+--);
+--create table users (
+--  id serial primary key,
+--  name text not null,
+--  pw_hash text not null
+--);
+--create table progression (
+--  id serial primary key,
+--  name text not null,
+--  bosses smallint not null,
+--  normal smallint not null,
+--  heroic smallint not null,
+--  mythic smallint not null
+--);
+create table recruitment (
   id serial primary key,
-  name text not null,
-  pw_hash text not null
+  class text not null,
+  spec1 text not null,
+  spec1_prio text not null,
+  spec2 text not null,
+  spec2_prio text not null,
+  spec3 text,
+  spec3_prio text,
+  spec4 text,
+  spec4_prio text
 );
-create table progression (
-  id serial primary key,
-  name text not null,
-  bosses smallint not null,
-  normal smallint not null,
-  heroic smallint not null,
-  mythic smallint not null
-);
-insert into progression (name, bosses, normal, heroic, mythic) values ('Emerald Nightmare', 7, 7, 7, 3);
-insert into progression (name, bosses, normal, heroic, mythic) values ('Trial of Valor', 3, 3, 0, 0);
-insert into applications (name, age, country, battletag, armory, specs, rig, experience, improve, what_it_takes, ui, logs, headset, raids, prevention, additional)
-values ('Sten', '24', 'Estonia', 'Canemy#2523', 'http://eu.battle.net/wow/en/character/twisting-nether/Canym/simple', 'Fire', 'GTX970, 500 mbit/s internet. Use it to stream and record raids',
-'Some minor raiding in TBC and WotLK. More serious in Cata. Skipped MoP. Was a raid leader and guildmaster throughout WoD. Got sick of managing retards. Joined a new guild on TN so I could be part of the problem',
-'SimCraft all my shit. Go over my logs. Class Discords. Altered Time forums',
-'My dick is just so big it needs its own 20-man raid', 'cba to link ', 'https://www.warcraftlogs.com/rankings/character/19265534/10/',
-'ofc', 'Yes', 'Getting tired of WoW', 'This is not a real application');
-insert into users (name, pw_hash)
-values ('admin', 'pbkdf2:sha1:1000$86o1V3VC$101ccd9dbea9aac4f760b9b783c4ba2f35fad8d5');
+
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('DK', 'Blood', 'None', 'Frost', 'None', 'Unholy', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('DH', 'Havoc', 'Medium', 'Vengeance', 'None', '', '', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Druid', 'Balance', 'Medium', 'Feral', 'None', 'Guardian', 'None', 'Restoration', 'None');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Hunter', 'BM', 'None', 'Marksmanship', 'None', 'Survival', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Mage', 'Arcane', 'None', 'Fire', 'High', 'Frost', 'High', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Monk', 'Brewmaster', 'None', 'Mistweaver', 'High', 'Windwalker', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Paladin', 'Holy', 'Medium', 'Protection', 'None', 'Retribution', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Priest', 'Discipline', 'High', 'Holy', 'None', 'Shadow', 'High', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Rogue', 'Assassination', 'None', 'Outlaw', 'None', 'Subtlety', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Shaman', 'Elemental', 'High', 'Enhancement', 'High', 'Restoration', 'None', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Warlock', 'Affliction', 'None', 'Demonology', 'High', 'Destruction', 'High', '', '');
+insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
+values ('Warrior', 'Arms', 'Medium', 'Fury', 'None', 'Protection', 'None', '', '');

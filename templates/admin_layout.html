@@ -8,14 +8,15 @@
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-         <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
         <title>Undivine</title>
 
         <!-- Bootstrap Core CSS -->
-         <link href="{{ url_for('static', filename='css/sidebar-bootstrap.css') }}" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename='css/sidebar-bootstrap.css') }}" rel="stylesheet"/>
 
         <!-- Custom CSS -->
-         <link href="{{ url_for('static', filename='css/simple-sidebar.css') }}" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename='css/simple-sidebar.css') }}" rel="stylesheet"/>
+        <!--<link href="{{ url_for('static', filename='css/style-purple.css') }}" rel="stylesheet"/>-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -40,6 +41,9 @@
                     </li>
                     <li>
                         <a href="{{ url_for('apps') }}">Applications</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('recruitment') }}">Recruitment</a>
                     </li>
                 </ul>
             </div>

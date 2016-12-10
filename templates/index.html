@@ -100,91 +100,27 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <h2>Recruiting</h2>
                 <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td><h4 class="death_knight">DK</h4></td>
-                            <td><h4 class="prioNone">Blood</h4></td>
-                            <td><h4 class="prioNone">Frost</h4></td>
-                            <td><h4 class="prioNone">Unholy</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="demon_hunter">DH</h4></td>
-                            <td><h4 class="prioMedium">Havoc</h4></td>
-                            <td><h4 class="prioNone">Vegeance</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="druid">Druid</h4></td>
-                            <td><h4 class="prioNone">Balance</h4></td>
-                            <td><h4 class="prioNone">Feral</h4></td>
-                            <td><h4 class="prioNone">Guardian</h4></td>
-                            <td><h4 class="prioNone">Restoration</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="hunter">Hunter</h4></td>
-                            <td><h4 class="prioNone">BM</h4></td>
-                            <td><h4 class="prioHigh">Marksmanship</h4></td>
-                            <td><h4 class="prioNone">Survival</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="mage">Mage</h4></td>
-                            <td><h4 class="prioHigh">Arcane</h4></td>
-                            <td><h4 class="prioHigh">Fire</h4></td>
-                            <td><h4 class="prioHigh">Frost</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="monk">Monk</h4></td>
-                            <td><h4 class="prioNone">Brewmaster</h4></td>
-                            <td><h4 class="prioHigh">Mistweaver</h4></td>
-                            <td><h4 class="prioNone">Windwalker</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="paladin">Paladin</h4></td>
-                            <td><h4 class="prioHigh">Holy</h4></td>
-                            <td><h4 class="prioNone">Protection</h4></td>
-                            <td><h4 class="prioHigh">Retribution</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="priest">Priest</h4></td>
-                            <td><h4 class="prioNone">Discipline</h4></td>
-                            <td><h4 class="prioNone">Holy</h4></td>
-                            <td><h4 class="prioHigh">Shadow</h4></td>
-                        </tr>
-                        <tr>
-
-                            <td><h4 class="rogue">Rogue</h4></td>
-                            <td><h4 class="prioNone">Assassination</h4></td>
-                            <td><h4 class="prioNone">Outlaw</h4></td>
-                            <td><h4 class="prioNone">Subtlety</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="shaman">Shaman</h4></td>
-                            <td><h4 class="prioNone">Elemental</h4></td>
-                            <td><h4 class="prioHigh">Enhancement</h4></td>
-                            <td><h4 class="prioHigh">Restoration</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="warlock">Warlock</h4></td>
-                            <td><h4 class="prioNone">Affliction</h4></td>
-                            <td><h4 class="prioHigh">Demonology</h4></td>
-                            <td><h4 class="prioHigh">Destruction</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 class="warrior">Warrior</h4></td>
-                            <td><h4 class="prioMedium">Arms</h4></td>
-                            <td><h4 class="prioNone">Fury</h4></td>
-                            <td><h4 class="prioNone">Protection</h4></td>
-                        </tr>
-                    </tbody>
-                    <tfooter>
-                        <tr>
-                            <th>Priority</th>
-                            <th class="prioHigh">High</th>
-                            <th class="prioMedium">Medium</th>
-                            <th class="prioLow">Low</th>
-                            <th class="prioNone">Not Recruiting</th>
-                        </tr>
-                    </tfooter>
-                </table>
+                <tbody>
+                    {% for recruit in recruitment %}
+                    <tr>
+                        <td><h4 class="{{ recruit[1] }}">{{ recruit[1] }}</h4></td>
+                        <td><h4 class="{{ recruit[3] }}">{{ recruit[2] }}</h4></td>
+                        <td><h4 class="{{ recruit[5] }}">{{ recruit[4] }}</h4></td>
+                        <td><h4 class="{{ recruit[7] }}">{{ recruit[6] }}</h4></td>
+                        <td><h4 class="{{ recruit[9] }}">{{ recruit[8] }}</h4></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <th>Priority</th>
+                        <th class="prioHigh">High</th>
+                        <th class="prioMedium">Medium</th>
+                        <th class="prioLow">Low</th>
+                        <th class="prioNone">Not Recruiting</th>
+                    </tr>
+                </tfooter>
+            </table>
             </div>
         </div>
     </div>

@@ -61,7 +61,9 @@ def home():
     cur = db.cursor()
     cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
     raids = cur.fetchall()
-    return render_template('index.html', raids=raids)
+    cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc;')
+    recruitment = cur.fetchall()
+    return render_template('index.html', raids=raids, recruitment=recruitment)
 
 
 @app.route('/apply')
@@ -115,6 +117,18 @@ def apps():
     return render_template('admin_apps.html', apps=apps)
 
 
+@app.route('/recruitment')
+def recruitment():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc;')
+    recruitment = cur.fetchall()
+    print(recruitment)
+    return render_template('admin_recruitment.html', recruitment=recruitment)
+
+
 # ADMIN FUNCTIONS
 @app.route('/add_raid', methods=['POST'])
 def add_raid():
@@ -138,6 +152,18 @@ def edit_raid():
                 (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic'], request.form['id']))
     db.commit()
     return redirect(url_for('raids', _external=True, _scheme='http'))
+
+
+@app.route('/edit_recruitment', methods=['POST'])
+def edit_recruitment():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('update recruitment set spec1_prio=%s, spec2_prio=%s, spec3_prio=%s, spec4_prio=%s where id=%s',
+                (request.form['spec1'], request.form['spec2'], request.form['spec3'], request.form['spec4'], request.form['id']))
+    db.commit()
+    return redirect(url_for('recruitment', _external=True, _scheme='http'))
 
 
 # USER ACCOUNTS
@@ -168,6 +194,6 @@ def logout():
 
 if __name__ == "__main__":
     # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
-    #init_db()
-    #app.run()  # local
-    app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
+    init_db()
+    app.run()  # local
+    # app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
