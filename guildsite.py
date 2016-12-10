@@ -135,8 +135,8 @@ def add_raid():
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur.execute('insert into progression (name, bosses, normal, heroic, mythic) values (%s, %s, %s, %s, %s)',
-                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic']))
+    cur.execute('insert into progression (name, bosses, normal, heroic, mythic, show) values (%s, %s, %s, %s, %s, %s)',
+                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic'], 'Show'))
     db.commit()
     return redirect(url_for('raids', _external=True, _scheme='http'))
 
