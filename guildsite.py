@@ -59,7 +59,7 @@ def close_db(error):
 def home():
     db = get_db()
     cur = db.cursor()
-    cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
+    cur.execute('select id, name, bosses, normal, heroic, mythic, show from progression order by id asc;')
     raids = cur.fetchall()
     cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc;')
     recruitment = cur.fetchall()
@@ -100,7 +100,7 @@ def raids():
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur.execute('select id, name, bosses, normal, heroic, mythic from progression order by id asc;')
+    cur.execute('select id, name, bosses, normal, heroic, mythic, show from progression order by id asc;')
     raids = cur.fetchall()
     return render_template('admin_raids.html', raids=raids)
 
@@ -125,7 +125,6 @@ def recruitment():
     cur = db.cursor()
     cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc;')
     recruitment = cur.fetchall()
-    print(recruitment)
     return render_template('admin_recruitment.html', recruitment=recruitment)
 
 
@@ -148,8 +147,8 @@ def edit_raid():
         return redirect(url_for('login', _external=True, _scheme='http'))
     db = get_db()
     cur = db.cursor()
-    cur.execute('update progression set name=%s, bosses=%s, normal=%s, heroic=%s, mythic=%s where id=%s',
-                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic'], request.form['id']))
+    cur.execute('update progression set name=%s, bosses=%s, normal=%s, heroic=%s, mythic=%s, show=%s where id=%s',
+                (request.form['raid'], request.form['bosses'], request.form['normal'], request.form['heroic'], request.form['mythic'], request.form['show'], request.form['id']))
     db.commit()
     return redirect(url_for('raids', _external=True, _scheme='http'))
 
@@ -194,6 +193,6 @@ def logout():
 
 if __name__ == "__main__":
     # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
-    #init_db()
+    init_db()
     #app.run()  # local
     app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web

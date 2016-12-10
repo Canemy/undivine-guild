@@ -18,6 +18,7 @@
                         <th>Normal</th>
                         <th>Heroic</th>
                         <th>Mythic</th>
+                        <th>Show on main page</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -33,6 +34,15 @@
                             <td><input class="form-control" name="normal" value="{{ raid[3] }}"></td>
                             <td><input class="form-control" name="heroic" value="{{ raid[4] }}"></td>
                             <td><input class="form-control" name="mythic" value="{{ raid[5] }}"></td>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control" name="show" id="show">
+                                        <option selected="selected"  hidden="hidden" value="{{ raid[6] }}">{{ raid[6] }}</option>
+                                        <option>Show</option>
+                                        <option>Hide</option>
+                                    </select>
+                                </div>
+                            </td>
                             <td><input type=submit value=UPDATE class=" btn button-custom btn-custom-two"></td>
                         </tr>
                     </form>
@@ -76,14 +86,16 @@
         <h2>Progression</h2>
         {% for raid in raids %}
         <h1 style="text-transform: uppercase">
-            {% if raid[5] != 0 %}
-                {{ raid[1] }} {{ raid[5] }}/{{ raid[2] }}M
-            {% elif raid[4] != 0 %}
-                {{ raid[1] }} {{ raid[4] }}/{{ raid[2] }}H
-            {% elif raid[3] != 0 %}
-                {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
-            {% else %}
-                {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+            {% if raid[6] == 'Show' %}
+                {% if raid[5] != 0 %}
+                    {{ raid[1] }} {{ raid[5] }}/{{ raid[2] }}M
+                {% elif raid[4] != 0 %}
+                    {{ raid[1] }} {{ raid[4] }}/{{ raid[2] }}H
+                {% elif raid[3] != 0 %}
+                    {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+                {% else %}
+                    {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
+                {% endif %}
             {% endif %}
         </h1>
         <h3 style="padding-top: 40px"></h3>
