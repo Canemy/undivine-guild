@@ -58,4 +58,3 @@
 --  description text,
 --  show text not null
 --);
-insert into roster (name,rank,class,level,thumbnail,show) values ('Teest', 0, 1, 10, 'sda', 'Hide');
