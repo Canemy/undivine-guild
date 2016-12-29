@@ -43,7 +43,6 @@
             <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
                 {% for raid in raids %}
                 <h1 style="text-transform: uppercase">
-                    {% if raid[6] == 'Show' %}
                         {% if raid[5] != 0 %}
                             {{ raid[1] }} {{ raid[5] }}/{{ raid[2] }}M
                         {% elif raid[4] != 0 %}
@@ -53,7 +52,6 @@
                         {% else %}
                             {{ raid[1] }} {{ raid[3] }}/{{ raid[2] }}N
                         {% endif %}
-                    {% endif %}
                 </h1>
                 {% endfor %}
                 <h3 id="guildrank">
@@ -116,10 +114,10 @@
                 <tfooter>
                     <tr>
                         <th>Priority</th>
-                        <th class="prioHigh">High</th>
-                        <th class="prioMedium">Medium</th>
-                        <th class="prioLow">Low</th>
-                        <th class="prioNone">Not Recruiting</th>
+                        <th class="High">High</th>
+                        <th class="Medium">Medium</th>
+                        <th class="Low">Low</th>
+                        <th class="None">Not Recruiting</th>
                     </tr>
                 </tfooter>
             </table>
@@ -172,51 +170,58 @@
             </div>
         </div>
         <div class="row animate-in" data-anim-type="fade-in-up">
-
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <div class="team-wrapper">
-                    <div class="team-inner" style="background-image: url('../static/img/team/khan.jpg')">
-                        <a href="http://eu.battle.net/wow/en/character/twisting-nether/Kh%C3%A3ntos/simple" target="_blank"> <i class="wow wow-wow"></i></a>
-                    </div>
-                    <div class="description">
-                        <h3>Khãntos</h3>
-                        <h5><strong>Guild Master</strong></h5>
-                        <p>
-                            Death Knight
-                        </p>
+            {% for char in roster %}
+                {% if char[2] == 1 %}
+                    {% set class = 'Warrior' %}
+                {% elif char[2] == 2 %}
+                    {% set class = 'Paladin' %}
+                {% elif char[2] == 3 %}
+                    {% set class = 'Hunter' %}
+                {% elif char[2] == 4 %}
+                    {% set class = 'Rogue' %}
+                {% elif char[2] == 5 %}
+                    {% set class = 'Priest' %}
+                {% elif char[2] == 6 %}
+                    {% set class = 'DK' %}
+                {% elif char[2] == 7 %}
+                    {% set class = 'Shaman' %}
+                {% elif char[2] == 8 %}
+                    {% set class = 'Mage' %}
+                {% elif char[2] == 9 %}
+                    {% set class = 'Warlock' %}
+                {% elif char[2] == 10 %}
+                    {% set class = 'Monk' %}
+                {% elif char[2] == 11 %}
+                    {% set class = 'Druid' %}
+                {% elif char[2] == 12 %}
+                    {% set class = 'DH' %}
+                {% endif %}
+                {% if char[1] == 0 %}
+                    {% set rank = 'Guild Master' %}
+                {% elif char[1] == 1 %}
+                    {% set rank = 'Officer' %}
+                {% elif char[1] == 3 %}
+                    {% set rank = 'Core Raider' %}
+                {% elif char[1] == 4 %}
+                    {% set rank = 'Raider' %}
+                {% elif char[1] == 5 %}
+                    {% set rank = 'Trial' %}
+                {% endif %}
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="team-wrapper">
+                        <div class="team-inner" style="background-image: url('http://render-eu.worldofwarcraft.com/character/{{ char[4] }}')">
+                            <a href="http://eu.battle.net/wow/en/character/twisting-nether/{{ char[0] }}/simple" target="_blank"> <i class="wow wow-wow"></i></a>
+                        </div>
+                        <div class="description">
+                            <h3 class="{{ class }}">{{ char[0] }}</h3>
+                            <h5><strong>{{ rank }}</strong></h5>
+                            <p>
+                                {{ char[5] }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <div class="team-wrapper">
-                    <div class="team-inner" style="background-image: url('../static/img/team/emmzy.jpg')">
-                        <a href="http://eu.battle.net/wow/en/character/twisting-nether/Emmzy/simple" target="_blank"> <i class="wow wow-wow"></i></a>
-                    </div>
-                    <div class="description">
-                        <h3>Emmzy</h3>
-                        <h5><strong>Officer</strong></h5>
-                        <p>
-                            Paladin
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <div class="team-wrapper">
-                    <div class="team-inner" style="background-image: url('../static/img/team/hyphyp.jpg')">
-                        <a href="http://eu.battle.net/wow/en/character/twisting-nether/Hyphyp/simple" target="_blank"> <i class="wow wow-wow"></i></a>
-                    </div>
-                    <div class="description">
-                        <h3>Hyphyp</h3>
-                        <h5><strong>Officer</strong></h5>
-                        <p>
-                            Priest
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

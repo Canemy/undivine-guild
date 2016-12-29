@@ -2,6 +2,7 @@ import os
 import psycopg2
 import urllib.parse as urlparse
 from contextlib import closing
+import urllib
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
@@ -59,11 +60,15 @@ def close_db(error):
 def home():
     db = get_db()
     cur = db.cursor()
-    cur.execute('select id, name, bosses, normal, heroic, mythic, show from progression order by id asc;')
+    cur.execute('select id, name, bosses, normal, heroic, mythic from progression where show=%s order by id asc',
+                ("Show", ))
     raids = cur.fetchall()
-    cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc;')
+    cur.execute('select id, class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio from recruitment order by id asc')
     recruitment = cur.fetchall()
-    return render_template('index.html', raids=raids, recruitment=recruitment)
+    cur.execute('select name, rank, class, level, thumbnail, description from roster where show=%s order by rank, name asc',
+                ("Show", ))
+    roster = cur.fetchall()
+    return render_template('index.html', raids=raids, recruitment=recruitment, roster=roster)
 
 
 @app.route('/apply')
@@ -128,6 +133,18 @@ def recruitment():
     return render_template('admin_recruitment.html', recruitment=recruitment)
 
 
+@app.route('/roster')
+def roster():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('select name, rank, class, level, thumbnail, description, show from roster order by rank, name asc;')
+    roster = cur.fetchall()
+    return render_template('admin_roster.html', roster=roster)
+
+
+
 # ADMIN FUNCTIONS
 @app.route('/add_raid', methods=['POST'])
 def add_raid():
@@ -165,6 +182,40 @@ def edit_recruitment():
     return redirect(url_for('recruitment', _external=True, _scheme='http'))
 
 
+@app.route('/update_roster', methods=['POST'])
+def update_roster():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    apiurl = "https://eu.api.battle.net/wow/guild/Twisting%20Nether/Undivine?fields=members&locale=en_GB&apikey=e5prqn7xpeweekdvx4jzebzfdpcu6gkq"
+    response = urllib.request.urlopen(apiurl)
+    data = json.loads(response.read())
+    members = []
+    for char in data['members']:
+        if char['rank'] in (0, 1, 3, 4, 5):
+            cur.execute('insert into roster (name, rank, class, level, thumbnail, description, show) '
+                        'values (%s, %s, %s, %s, %s, %s, %s) on conflict (name) do update set rank=%s, class=%s, level=%s, thumbnail=%s',
+                        (char['character']["name"], char['rank'], char['character']["class"], char['character']["level"], char['character']["thumbnail"].replace("avatar", "inset"),
+                         "", "Hide", char['rank'], char['character']["class"], char['character']["level"], char['character']["thumbnail"].replace("avatar", "inset")))
+            members.append(char['character']["name"])
+    cur.execute('delete from roster where name not in %s', (tuple(members),))
+    db.commit()
+    return redirect(url_for('roster', _external=True, _scheme='http'))
+
+
+@app.route('/edit_roster', methods=['POST'])
+def edit_roster():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('update roster set description=%s, show=%s where name=%s',
+                (request.form['description'], request.form['show'], request.form['name']))
+    db.commit()
+    return redirect(url_for('roster', _external=True, _scheme='http'))
+
+
 # USER ACCOUNTS
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -194,5 +245,5 @@ def logout():
 if __name__ == "__main__":
     # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
     #init_db()
-    #app.run()  # local
-    app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
+    app.run()  # local
+    #app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web

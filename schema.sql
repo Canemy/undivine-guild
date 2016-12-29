@@ -1,7 +1,8 @@
 --drop table if exists applications;
 --drop table if exists users;
-drop table if exists progression;
+--drop table if exists progression;
 --drop table if exists recruitment;
+--drop table if exists roster;
 --create table applications (
 --  id serial primary key ,
 --  name text not null,
@@ -27,15 +28,15 @@ drop table if exists progression;
 --  name text not null,
 --  pw_hash text not null
 --);
-create table progression (
-  id serial primary key,
-  name text not null,
-  bosses smallint not null,
-  normal smallint not null,
-  heroic smallint not null,
-  mythic smallint not null,
-  show text not null
-);
+--create table progression (
+--  id serial primary key,
+--  name text not null,
+--  bosses smallint not null,
+--  normal smallint not null,
+--  heroic smallint not null,
+--  mythic smallint not null,
+--  show text not null
+--);
 --create table recruitment (
 --  id serial primary key,
 --  class text not null,
@@ -48,32 +49,13 @@ create table progression (
 --  spec4 text,
 --  spec4_prio text
 --);
-
-
-insert into progression (name, bosses, normal, heroic, mythic, show) values ('Emerald Nightmare', 7, 7, 7, 5, 'Show');
-insert into progression (name, bosses, normal, heroic, mythic, show) values ('Trial of Valor', 3, 3, 0, 0, 'Show');
-
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('DK', 'Blood', 'None', 'Frost', 'None', 'Unholy', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('DH', 'Havoc', 'Medium', 'Vengeance', 'None', '', '', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Druid', 'Balance', 'Medium', 'Feral', 'None', 'Guardian', 'None', 'Restoration', 'None');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Hunter', 'BM', 'None', 'Marksmanship', 'None', 'Survival', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Mage', 'Arcane', 'None', 'Fire', 'High', 'Frost', 'High', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Monk', 'Brewmaster', 'None', 'Mistweaver', 'High', 'Windwalker', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Paladin', 'Holy', 'Medium', 'Protection', 'None', 'Retribution', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Priest', 'Discipline', 'High', 'Holy', 'None', 'Shadow', 'High', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Rogue', 'Assassination', 'None', 'Outlaw', 'None', 'Subtlety', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Shaman', 'Elemental', 'High', 'Enhancement', 'High', 'Restoration', 'None', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Warlock', 'Affliction', 'None', 'Demonology', 'High', 'Destruction', 'High', '', '');
---insert into recruitment (class, spec1, spec1_prio, spec2, spec2_prio, spec3, spec3_prio, spec4, spec4_prio)
---values ('Warrior', 'Arms', 'Medium', 'Fury', 'None', 'Protection', 'None', '', '');
+--create table roster (
+--  name text primary key,
+--  rank smallint not null,
+--  class smallint not null,
+--  level smallint not null,
+--  thumbnail text not null,
+--  description text,
+--  show text not null
+--);
+insert into roster (name,rank,class,level,thumbnail,show) values ('Teest', 0, 1, 10, 'sda', 'Hide');

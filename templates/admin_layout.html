@@ -45,6 +45,9 @@
                     <li>
                         <a href="{{ url_for('recruitment') }}">Recruitment</a>
                     </li>
+                    <li>
+                        <a href="{{ url_for('roster') }}">Roster</a>
+                    </li>
                 </ul>
             </div>
         {% block body %}{% endblock %}
@@ -55,7 +58,7 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-
+        <!-- CUSTOM SCRIPTS -->
     </body>
 
 </html>
