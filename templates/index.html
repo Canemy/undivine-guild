@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#home">HOME</a></li>
                 <li><a href="#grid">ABOUT</a></li>
-                <!--<li><a href="#gallery">MEDIA</a></li> TODO: implement gallery-->
+                <li><a href="#gallery">MEDIA</a></li> TODO: implement gallery
                 <li><a href="#team">TEAM</a></li>
                 <li><a href="#applying">APPLY</a></li>
             </ul>
@@ -129,40 +129,41 @@
     </div>
 </section>
 <!--GRID SECTION END-->
-<!--&lt;!&ndash;GALLERY SECTION START&ndash;&gt;-->
-<!--<section id="gallery">-->
-    <!--<div class="container">-->
-        <!--<div class="row text-center header animate-in" data-anim-type="fade-in-up">-->
-            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
-                <!--<h3>Gallery</h3>-->
-                <!--<hr/>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row text-center animate-in" data-anim-type="fade-in-up">-->
-            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">-->
-                <!--<div class="categories">-->
-                    <!--<a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm">All</a>-->
-                    <!--<a href="#" data-filter=".ten" class="btn btn-custom btn-custom-two btn-sm">The Emerald Nightmare </a>-->
-                    <!--<a href="#" data-filter=".gps" class="btn btn-custom btn-custom-two btn-sm">The Grand Palace of Suramar</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+<!--GALLERY SECTION START-->
+<section id="gallery">
+    <div class="container">
+        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Gallery</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class="row text-center animate-in" data-anim-type="fade-in-up">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
+                <div class="categories">
+                    <a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm">All</a>
+                    {% for category in categories %}
+                        <a href="#" data-filter=".{{ category[0] }}" class="btn btn-custom btn-custom-two btn-sm">{{ category[1] }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
-        <!--<div class="row text-center animate-in" data-anim-type="fade-in-up" id="gallery-div">-->
-            <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">-->
-                <!--<div class="gallery-wrapper">-->
-
-                    <!--<a class="fancybox-media" title="Minutes before Legion launch" href="static/img/kills/launch.jpg">-->
-                        <!--<img src="static/img/kills/launch.jpg" class="img-responsive img-rounded" alt=""/>-->
-                    <!--</a>-->
-
-                    <!--<h4>Launch event</h4>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-<!--</section>-->
-<!--&lt;!&ndash;KILLS SECTION END&ndash;&gt;-->
+        <div class="row text-center animate-in" data-anim-type="fade-in-up" id="gallery-div">
+            {% for pic in gallery %}
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 {{ pic[3] }}">
+                <div class="gallery-wrapper">
+                    <a class="fancybox-media" title="{{ pic[2] }}" href="{{ url_for('static', filename='img/gallery/' + pic[0]) }}">
+                        <img src="static/img/gallery/{{ pic[0] }}" class="img-responsive img-rounded" alt=""/>
+                    </a>
+                    <h4>{{ pic[1] }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+     </div>
+</section>
+<!--GALLERY SECTION END-->
 <!--TEAM SECTION START-->
 <section id="team">
     <div class="container">

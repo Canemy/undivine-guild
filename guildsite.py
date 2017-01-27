@@ -10,9 +10,11 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 # create our little application :)
 from flask import json
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
@@ -23,7 +25,9 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
+UPLOAD_FOLDER = './static/img/gallery'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def connect_db():
     """Connects to the specific database."""
@@ -68,7 +72,11 @@ def home():
     cur.execute('select name, rank, class, level, thumbnail, description from roster where show=%s order by rank, name asc',
                 ("Show", ))
     roster = cur.fetchall()
-    return render_template('index.html', raids=raids, recruitment=recruitment, roster=roster)
+    cur.execute('select file, title, description, category from gallery')
+    gallery = cur.fetchall()
+    cur.execute('select shortcut, name from category;')
+    categories = cur.fetchall()
+    return render_template('index.html', raids=raids, recruitment=recruitment, roster=roster, gallery=gallery, categories=categories)
 
 
 @app.route('/apply')
@@ -144,6 +152,21 @@ def roster():
     return render_template('admin_roster.html', roster=roster)
 
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload')
+def upload():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('select shortcut, name from category;')
+    categories = cur.fetchall()
+    return render_template('admin_upload.html', categories=categories)
+
 
 # ADMIN FUNCTIONS
 @app.route('/add_raid', methods=['POST'])
@@ -214,6 +237,45 @@ def edit_roster():
                 (request.form['description'], request.form['show'], request.form['name']))
     db.commit()
     return redirect(url_for('roster', _external=True, _scheme='http'))
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            db = get_db()
+            cur = db.cursor()
+            cur.execute('insert into gallery (file, title, description, category) values (%s, %s, %s, %s)',
+                         (filename, request.form['title'], request.form['description'], request.form['category']))
+            print(filename, request.form['title'], request.form['description'], request.form['category'])
+            db.commit()
+    return redirect(url_for('upload', _external=True, _scheme='http'))
+
+
+@app.route('/add_category', methods=['POST'])
+def add_category():
+    if not session.get('logged_in'):
+        return redirect(url_for('login', _external=True, _scheme='http'))
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('insert into category (shortcut, name) values (%s, %s)',
+                (request.form['shortcut'], request.form['name']))
+    db.commit()
+    return redirect(url_for('upload', _external=True, _scheme='http'))
 
 
 # USER ACCOUNTS
