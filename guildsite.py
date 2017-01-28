@@ -216,7 +216,7 @@ def update_roster():
     data = json.loads(response.read())
     members = []
     for char in data['members']:
-        if char['rank'] in (0, 1, 3, 4, 5):
+        if char['rank'] in (0, 1, 3, 4):
             cur.execute('insert into roster (name, rank, class, level, thumbnail, description, show) '
                         'values (%s, %s, %s, %s, %s, %s, %s) on conflict (name) do update set rank=%s, class=%s, level=%s, thumbnail=%s',
                         (char['character']["name"], char['rank'], char['character']["class"], char['character']["level"], char['character']["thumbnail"].replace("avatar", "inset"),
