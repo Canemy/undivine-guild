@@ -154,8 +154,8 @@
             {% for pic in gallery %}
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 {{ pic[3] }}">
                 <div class="gallery-wrapper">
-                    <a class="fancybox-media" title="{{ pic[2] }}" href="{{ url_for('static', filename='img/gallery/' + pic[0]) }}">
-                        <img src="static/img/gallery/{{ pic[0] }}" class="img-responsive img-rounded" alt=""/>
+                    <a class="fancybox-media" title="{{ pic[2] }}" href="{{ pic[0] }}">
+                        <img src="{{ pic[0] }}" class="img-responsive img-rounded" alt=""/>
                     </a>
                     <h4>{{ pic[1] }}</h4>
                 </div>

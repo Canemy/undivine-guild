@@ -3,7 +3,7 @@
 --drop table if exists progression;
 --drop table if exists recruitment;
 --drop table if exists roster;
---drop table if exists gallery;
+drop table if exists gallery;
 --drop table if exists category;
 --create table applications (
 --  id serial primary key ,
@@ -60,12 +60,12 @@
 --  description text,
 --  show text not null
 --);
---create table gallery (
---  file text primary key,
---  title text not null,
---  description text not null,
---  category text not null
---);
+create table gallery (
+  file text primary key,
+  title text not null,
+  description text not null,
+  category text not null
+);
 --create table category (
 --  shortcut text primary key,
 --  name text not null

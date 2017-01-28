@@ -16,7 +16,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Category</th>
-                    <th>File</th>
+                    <th><a href="http://imgur.com/">imgur.com</a> link</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,16 +34,17 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <select class="form-control" name="category">
+                                <select class="form-control" name="category" required>
+                                        <option></option>
                                     {% for category in categories %}
                                         <option>{{ category[0] }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                         </td>
-                        <td scope="row">
+                        <td>
                             <div class="form-group">
-                                <input type=file name=file required>
+                                <input class="form-control" name="file" required placeholder="">
                             </div>
                         </td>
                         <td>

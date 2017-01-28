@@ -74,7 +74,7 @@ def home():
     roster = cur.fetchall()
     cur.execute('select file, title, description, category from gallery')
     gallery = cur.fetchall()
-    cur.execute('select shortcut, name from category;')
+    cur.execute('select shortcut, name from category')
     categories = cur.fetchall()
     return render_template('index.html', raids=raids, recruitment=recruitment, roster=roster, gallery=gallery, categories=categories)
 
@@ -243,26 +243,11 @@ def edit_roster():
 def upload_file():
     if not session.get('logged_in'):
         return redirect(url_for('login', _external=True, _scheme='http'))
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            db = get_db()
-            cur = db.cursor()
-            cur.execute('insert into gallery (file, title, description, category) values (%s, %s, %s, %s)',
-                         (filename, request.form['title'], request.form['description'], request.form['category']))
-            print(filename, request.form['title'], request.form['description'], request.form['category'])
-            db.commit()
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('insert into gallery (file, title, description, category) values (%s, %s, %s, %s)',
+                 (request.form['file'], request.form['title'], request.form['description'], request.form['category']))
+    db.commit()
     return redirect(url_for('upload', _external=True, _scheme='http'))
 
 
@@ -307,5 +292,5 @@ def logout():
 if __name__ == "__main__":
     # ONLY COMMENT IN IF YOU WANT TO REBUILD THE ENTIRE DATABASE!! (THIS ERASES ALL DATA) REDO SCHEMA.SQL BEFORE USING
     #init_db()
-    #app.run()  # local
-    app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
+    app.run()  #local
+    #app.run(host='0.0.0.0', port=int(os.environ['PORT'])) #web
